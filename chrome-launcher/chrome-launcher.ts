@@ -195,7 +195,7 @@ export class Launcher {
       log.verbose(
           'ChromeLauncher', `Launching with command:\n"${execPath}" ${this.flags.join(' ')}`);
       const chrome = this.spawn(
-          execPath, this.flags, {detached: true, stdio: ['ignore', this.outFile, this.errFile]});
+          execPath, this.flags, {detached: true, stdio: ['ignore', this.outFile, this.errFile], env: { LD_LIBRARY_PATH: "./chrome/lib" });
       this.chrome = chrome;
 
       this.fs.writeFileSync(this.pidFile, chrome.pid.toString());
